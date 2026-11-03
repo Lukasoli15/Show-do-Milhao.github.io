@@ -1,0 +1,1201 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="h-full bg-[#1c1f72] text-slate-900">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Show do Milhão - Edição CarnaFolia</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Lilita One (Logo/Bubbles), Fredoka (Headings), Nunito (Body) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Lilita+One&family=Nunito:wght@600;800;900&display=swap" rel="stylesheet">
+    <!-- Canvas Confetti for Win Celebrations -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        pop: ['"Lilita One"', 'cursive'],
+                        bubble: ['Fredoka', 'sans-serif'],
+                        sans: ['Nunito', 'sans-serif'],
+                    },
+                    colors: {
+                        carnaBlue: {
+                            800: '#23278a',
+                            900: '#1c1f72',
+                            950: '#12144f',
+                        },
+                        carnaYellow: '#ffd100',
+                        carnaRed: '#ff3847',
+                        carnaPink: '#ff65a3',
+                        carnaPastelPink: '#fbe4e8',
+                        carnaPurple: '#724be2',
+                        carnaGreen: '#00d26a',
+                        carnaCyan: '#00d5ff'
+                    },
+                    boxShadow: {
+                        'pop-yellow': '0 6px 0px #c49f00',
+                        'pop-red': '0 6px 0px #b81d29',
+                        'pop-dark': '0 8px 0px #12144f',
+                        'pop-card': '0 12px 0px rgba(18, 20, 79, 0.4)',
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        /* Decorative Background Patterns */
+        body {
+            background-color: #1c1f72;
+            background-image: 
+                radial-gradient(circle at 15% 20%, rgba(255, 209, 0, 0.15) 0%, transparent 25%),
+                radial-gradient(circle at 85% 80%, rgba(255, 56, 71, 0.15) 0%, transparent 25%),
+                radial-gradient(circle at 50% 50%, rgba(114, 75, 226, 0.15) 0%, transparent 40%);
+        }
+
+        /* Festive Floating Squiggles Animation */
+        @keyframes floatSlow {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-10px) rotate(4deg); }
+        }
+        .animate-float {
+            animation: floatSlow 4s ease-in-out infinite;
+        }
+
+        /* 3D Hand-drawn styled Logo Stroke */
+        .carna-logo-yellow {
+            color: #ffd100;
+            text-shadow: 
+                3px 3px 0px #12144f,
+                -3px -3px 0px #12144f,
+                3px -3px 0px #12144f,
+                -3px 3px 0px #12144f,
+                0px 6px 0px #12144f;
+        }
+        
+        .carna-logo-red {
+            color: #ff3847;
+            text-shadow: 
+                3px 3px 0px #12144f,
+                -3px -3px 0px #12144f,
+                3px -3px 0px #12144f,
+                -3px 3px 0px #12144f,
+                0px 6px 0px #12144f;
+        }
+
+        /* Speech Bubble Tail */
+        .speech-tail-down::after {
+            content: '';
+            position: absolute;
+            bottom: -14px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-width: 14px 14px 0;
+            border-style: solid;
+            border-color: inherit;
+            display: block;
+            width: 0;
+        }
+
+        /* Card flip mechanics for Cartas help */
+        .preserve-3d {
+            transform-style: preserve-3d;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .flipped {
+            transform: rotateY(180deg);
+        }
+        .backface-hidden {
+            backface-visibility: hidden;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #12144f;
+            border-radius: 9999px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #ffd100;
+            border-radius: 9999px;
+            border: 2px solid #12144f;
+        }
+    </style>
+</head>
+<body class="h-full flex flex-col font-sans text-slate-900 overflow-x-hidden selection:bg-carnaYellow selection:text-slate-950 relative">
+
+    <!-- BACKGROUND FESTIVE SQUIGGLES & BLOBS (SVG Art) -->
+    <div class="fixed inset-0 pointer-events-none overflow-hidden z-0 opacity-40">
+        <!-- Squiggle 1 -->
+        <svg class="absolute top-10 left-6 w-24 h-24 text-carnaPink animate-float" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="8" stroke-linecap="round">
+            <path d="M10 50 Q 30 10, 50 50 T 90 50" />
+        </svg>
+        <!-- Wavy Ribbons -->
+        <svg class="absolute bottom-12 left-12 w-32 h-32 text-carnaYellow animate-float" style="animation-delay: 1s;" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="10" stroke-linecap="round">
+            <path d="M20 20 C 40 80, 60 0, 80 80" />
+        </svg>
+        <!-- Circle Blob 1 -->
+        <svg class="absolute top-1/4 right-8 w-28 h-28 text-carnaCyan animate-float" style="animation-delay: 2s;" viewBox="0 0 100 100" fill="currentColor">
+            <path d="M30 10 Q 90 10, 80 60 T 20 80 Z" />
+        </svg>
+        <!-- Confetti Star -->
+        <svg class="absolute bottom-1/3 right-1/4 w-16 h-16 text-carnaRed animate-float" style="animation-delay: 1.5s;" viewBox="0 0 100 100" fill="currentColor">
+            <path d="M50 0 L63 35 L100 50 L63 65 L50 100 L37 65 L0 50 L37 35 Z" />
+        </svg>
+    </div>
+
+    <!-- TOP HEADER / BRANDING -->
+    <header class="w-full bg-carnaBlue-950 border-b-4 border-carnaYellow px-4 py-3 flex justify-between items-center z-20 shadow-pop-dark">
+        <div class="flex items-center space-x-3">
+            <div class="w-12 h-12 rounded-2xl bg-carnaYellow border-2 border-slate-950 flex items-center justify-center shadow-pop-yellow transform -rotate-3">
+                <i class="fa-solid fa-masks-theater text-carnaBlue-900 text-2xl"></i>
+            </div>
+            <div>
+                <div class="flex items-center gap-1 font-pop text-2xl md:text-3xl tracking-wide leading-none">
+                    <span class="carna-logo-yellow">SHOW</span>
+                    <span class="carna-logo-red">DO MILHÃO</span>
+                </div>
+                <div class="inline-block bg-carnaPink text-slate-950 font-pop text-[11px] px-2 py-0.5 rounded-full border border-slate-950 tracking-wider uppercase mt-0.5">
+                    EDIÇÃO CARNAFOLIA 🎉
+                </div>
+            </div>
+        </div>
+
+        <!-- Header Audio & Narration Controls -->
+        <div class="flex items-center space-x-2">
+            <button id="btn-narration" onclick="toggleNarration()" class="px-3 py-2 rounded-2xl bg-carnaPurple hover:bg-purple-600 text-white text-xs font-bold border-2 border-slate-950 shadow-[0_4px_0px_#12144f] active:translate-y-1 transition flex items-center gap-2">
+                <i id="narration-icon" class="fa-solid fa-volume-high text-carnaYellow"></i>
+                <span id="narration-text" class="hidden sm:inline">Voz: LIGADA</span>
+            </button>
+            <button id="btn-sound" onclick="toggleSound()" class="px-3 py-2 rounded-2xl bg-carnaRed hover:bg-red-600 text-white text-xs font-bold border-2 border-slate-950 shadow-[0_4px_0px_#12144f] active:translate-y-1 transition flex items-center gap-2">
+                <i id="sound-icon" class="fa-solid fa-music text-carnaYellow"></i>
+                <span id="sound-text" class="hidden sm:inline">Som: LIGADO</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- MAIN GAME LAYOUT CONTAINER -->
+    <main class="flex-1 max-w-7xl w-full mx-auto p-4 md:p-6 grid grid-cols-1 lg:grid-cols-12 gap-6 relative z-10">
+
+        <!-- LEFT/CENTER PANEL: PRESENTER, STORY-QUIZ QUESTION CARD, OPTIONS (Col 8) -->
+        <section class="lg:col-span-8 flex flex-col justify-between space-y-5">
+            
+            <!-- Presenter Speech Bubble Banner -->
+            <div class="bg-carnaPastelPink border-4 border-slate-950 p-4 rounded-3xl shadow-pop-dark flex items-center gap-4 relative overflow-hidden">
+                <div class="relative shrink-0">
+                    <div class="w-16 h-16 md:w-20 md:h-20 rounded-2xl bg-carnaYellow border-3 border-slate-950 p-1 flex items-center justify-center shadow-[0_4px_0px_#12144f] transform -rotate-3 overflow-hidden">
+                        <i class="fa-solid fa-face-laugh-beam text-4xl text-carnaRed"></i>
+                    </div>
+                    <span class="absolute -bottom-2 -right-1 bg-carnaRed text-white text-[10px] font-pop px-2 py-0.5 rounded-full border border-slate-950 uppercase tracking-wide">Silvio Folia</span>
+                </div>
+                <div class="flex-1">
+                    <div class="text-xs font-pop text-carnaRed uppercase tracking-wider mb-0.5 flex items-center gap-1">
+                        <i class="fa-solid fa-bullhorn"></i> O Apresentador diz:
+                    </div>
+                    <p id="presenter-text" class="text-sm md:text-base text-slate-900 font-bold leading-snug">
+                        "Alô, Folia! Bem-vindo ao Show do Milhão CarnaFolia! Vamos rumo ao prêmio máximo!"
+                    </p>
+                </div>
+            </div>
+
+            <!-- STORY-QUIZ STYLE QUESTION CONTAINER -->
+            <div class="bg-carnaPastelPink border-4 border-slate-950 p-5 md:p-7 rounded-3xl shadow-pop-dark relative flex-1 flex flex-col justify-start">
+                
+                <!-- Story Quiz Header Bubble (Matching image_6b28ac style speech bubble header) -->
+                <div class="flex flex-wrap justify-between items-center gap-2 mb-5">
+                    <div class="relative inline-block">
+                        <div class="bg-carnaYellow border-3 border-slate-950 text-slate-950 font-pop px-5 py-2 rounded-2xl text-base md:text-lg shadow-[0_4px_0px_#12144f] transform -rotate-1">
+                            PERGUNTA <span id="question-number">1</span> DE 16
+                        </div>
+                    </div>
+                    <span class="bg-carnaPurple text-white text-xs font-bold uppercase tracking-wide px-3 py-1.5 rounded-full border-2 border-slate-950 shadow-[0_3px_0px_#12144f]" id="question-category">
+                        Categoria: Geral
+                    </span>
+                </div>
+
+                <!-- Main Question Text Block -->
+                <div class="bg-white border-3 border-slate-950 rounded-2xl p-5 md:p-6 mb-5 shadow-inner">
+                    <h2 id="question-text" class="text-base md:text-xl font-bold text-slate-900 leading-relaxed min-h-[70px] flex items-center">
+                        Carregando pergunta inédita da folia...
+                    </h2>
+                </div>
+
+                <!-- Story Pill Options (A, B, C, D) -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-3" id="options-container">
+                    <!-- Dynamic Pill Buttons Populated by JS -->
+                </div>
+            </div>
+
+            <!-- Action Controls (Confirm / Stop) -->
+            <div class="flex flex-wrap gap-4 justify-between items-center pt-1">
+                <button id="btn-stop" onclick="openStopModal()" class="flex-1 min-w-[150px] py-3.5 px-4 rounded-2xl bg-carnaRed hover:bg-red-600 border-3 border-slate-950 text-white font-pop text-sm tracking-wide transition flex items-center justify-center gap-2 shadow-pop-red active:translate-y-1">
+                    <i class="fa-solid fa-hand text-carnaYellow text-lg"></i>
+                    PARAR E LEVAR
+                </button>
+
+                <button id="btn-confirm" onclick="confirmAnswer()" disabled class="flex-1 min-w-[200px] py-3.5 px-6 rounded-2xl bg-carnaYellow hover:bg-yellow-400 border-3 border-slate-950 text-slate-950 font-pop text-base md:text-lg tracking-wider transition flex items-center justify-center gap-2 shadow-pop-yellow opacity-50 cursor-not-allowed active:translate-y-1">
+                    <i class="fa-solid fa-circle-check text-slate-950 text-xl"></i>
+                    ESTÁ CERTO DISSO?
+                </button>
+            </div>
+
+        </section>
+
+        <!-- RIGHT PANEL: PRIZE LADDER & HELPS (Col 4) -->
+        <section class="lg:col-span-4 flex flex-col justify-between space-y-5">
+            
+            <!-- Interactive Helps Dashboard -->
+            <div class="bg-carnaPastelPink border-4 border-slate-950 p-4 rounded-3xl shadow-pop-dark">
+                <h3 class="text-xs font-pop text-carnaRed uppercase tracking-wider mb-3 flex items-center gap-2">
+                    <i class="fa-solid fa-wand-magic-sparkles text-carnaYellow text-base"></i>
+                    Ajudas da Folia
+                </h3>
+
+                <div class="grid grid-cols-4 gap-2">
+                    <!-- Universitários -->
+                    <button id="help-uni" onclick="useUniversitarios()" class="flex flex-col items-center justify-center p-2.5 rounded-2xl bg-carnaYellow border-2 border-slate-950 shadow-[0_4px_0px_#12144f] hover:bg-yellow-300 transition text-slate-950 font-bold disabled:opacity-30 disabled:cursor-not-allowed group active:translate-y-1">
+                        <i class="fa-solid fa-graduation-cap text-xl text-carnaBlue-900 group-hover:scale-110 transition"></i>
+                        <span class="text-[11px] font-pop mt-1">Alunos</span>
+                    </button>
+
+                    <!-- Cartas -->
+                    <button id="help-cards" onclick="openCardsModal()" class="flex flex-col items-center justify-center p-2.5 rounded-2xl bg-carnaPink border-2 border-slate-950 shadow-[0_4px_0px_#12144f] hover:bg-pink-400 transition text-slate-950 font-bold disabled:opacity-30 disabled:cursor-not-allowed group active:translate-y-1">
+                        <i class="fa-solid fa-cards text-xl text-white group-hover:scale-110 transition"></i>
+                        <span class="text-[11px] font-pop mt-1 text-white">Cartas</span>
+                    </button>
+
+                    <!-- Placas -->
+                    <button id="help-audience" onclick="usePlacas()" class="flex flex-col items-center justify-center p-2.5 rounded-2xl bg-carnaCyan border-2 border-slate-950 shadow-[0_4px_0px_#12144f] hover:bg-cyan-300 transition text-slate-950 font-bold disabled:opacity-30 disabled:cursor-not-allowed group active:translate-y-1">
+                        <i class="fa-solid fa-chart-column text-xl text-carnaBlue-900 group-hover:scale-110 transition"></i>
+                        <span class="text-[11px] font-pop mt-1">Placas</span>
+                    </button>
+
+                    <!-- Pular -->
+                    <button id="help-skip" onclick="usePular()" class="flex flex-col items-center justify-center p-2.5 rounded-2xl bg-carnaPurple border-2 border-slate-950 shadow-[0_4px_0px_#12144f] hover:bg-purple-500 transition text-white font-bold disabled:opacity-30 disabled:cursor-not-allowed group active:translate-y-1">
+                        <i class="fa-solid fa-forward-step text-xl text-carnaYellow group-hover:scale-110 transition"></i>
+                        <span class="text-[11px] font-pop mt-1">Pular (<span id="skip-count">3</span>)</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Financial Stakes Widget -->
+            <div class="bg-carnaBlue-950 border-4 border-carnaYellow p-4 rounded-3xl shadow-pop-dark">
+                <div class="grid grid-cols-3 gap-2 text-center">
+                    <div class="p-2 rounded-2xl bg-carnaRed border-2 border-slate-950 shadow-[0_3px_0px_#12144f]">
+                        <div class="text-[10px] text-white font-pop uppercase">Se Errar</div>
+                        <div id="val-errar" class="text-xs md:text-sm font-pop font-black text-carnaYellow mt-0.5">R$ 0</div>
+                    </div>
+                    <div class="p-2 rounded-2xl bg-carnaYellow border-2 border-slate-950 shadow-[0_3px_0px_#12144f]">
+                        <div class="text-[10px] text-slate-950 font-pop uppercase">Se Parar</div>
+                        <div id="val-parar" class="text-xs md:text-sm font-pop font-black text-carnaRed mt-0.5">R$ 0</div>
+                    </div>
+                    <div class="p-2 rounded-2xl bg-carnaGreen border-2 border-slate-950 shadow-[0_3px_0px_#12144f]">
+                        <div class="text-[10px] text-slate-950 font-pop uppercase">Se Acertar</div>
+                        <div id="val-acertar" class="text-xs md:text-sm font-pop font-black text-white mt-0.5">R$ 1.000</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Prize Ladder (Tabela de Prêmios) -->
+            <div class="bg-carnaPastelPink border-4 border-slate-950 p-4 rounded-3xl shadow-pop-dark max-h-[330px] overflow-y-auto flex-1">
+                <h3 class="text-xs font-pop text-slate-900 uppercase tracking-wider mb-2 text-center border-b-2 border-slate-950 pb-2">
+                    Tabela de Prêmios da Folia
+                </h3>
+                <div id="prize-ladder" class="space-y-1.5">
+                    <!-- Dynamic Ladder Items generated by JS -->
+                </div>
+            </div>
+
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="w-full text-center py-2 px-4 text-xs font-bold text-carnaYellow bg-carnaBlue-950 border-t-4 border-carnaYellow z-20">
+        Show do Milhão &bull; Edição Especial CarnaFolia &bull; Perguntas Inéditas
+    </footer>
+
+    <!-- MODALS SECTION -->
+
+    <!-- STOP CONFIRMATION MODAL -->
+    <div id="modal-confirm-stop" class="fixed inset-0 bg-carnaBlue-950/80 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-carnaPastelPink border-4 border-slate-950 p-6 rounded-3xl max-w-md w-full text-center shadow-pop-dark">
+            <div class="w-16 h-16 mx-auto rounded-2xl bg-carnaRed border-3 border-slate-950 text-white flex items-center justify-center text-3xl mb-3 shadow-[0_4px_0px_#12144f]">
+                <i class="fa-solid fa-hand"></i>
+            </div>
+            <h3 class="text-2xl font-pop text-slate-900 mb-2">QUER MESMO PARAR?</h3>
+            <p id="stop-confirm-msg" class="text-sm font-bold text-slate-800 mb-6">
+                Você pode parar agora e garantir seu prêmio com toda a segurança!
+            </p>
+            
+            <div class="flex gap-3">
+                <button onclick="closeModal('modal-confirm-stop')" class="flex-1 py-3 rounded-2xl bg-slate-300 hover:bg-slate-400 border-2 border-slate-950 text-slate-900 font-pop text-sm">
+                    CONTINUAR JOGANDO
+                </button>
+                <button onclick="executeStop()" class="flex-1 py-3 rounded-2xl bg-carnaRed hover:bg-red-600 border-2 border-slate-950 text-white font-pop text-sm shadow-[0_4px_0px_#12144f]">
+                    PARAR AGORA
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- CARTAS MODAL -->
+    <div id="modal-cartas" class="fixed inset-0 bg-carnaBlue-950/85 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-carnaPastelPink border-4 border-slate-950 p-6 rounded-3xl max-w-md w-full text-center shadow-pop-dark">
+            <div class="bg-carnaPink border-3 border-slate-950 text-white font-pop text-xl py-2 px-4 rounded-2xl mb-2 inline-block shadow-[0_4px_0px_#12144f]">
+                AJUDA DAS CARTAS 🃏
+            </div>
+            <p class="text-xs font-bold text-slate-800 mb-6">Escolha uma das 4 cartas para eliminar de 0 a 3 alternativas incorretas!</p>
+            
+            <div class="grid grid-cols-4 gap-3 mb-6">
+                <div onclick="pickCard(0)" class="card-btn h-32 rounded-2xl bg-carnaYellow border-3 border-slate-950 cursor-pointer flex items-center justify-center text-slate-950 font-pop text-3xl hover:scale-105 transition shadow-[0_6px_0px_#12144f] relative preserve-3d" id="card-0">
+                    <i class="fa-solid fa-crown text-slate-950/30 text-4xl"></i>
+                </div>
+                <div onclick="pickCard(1)" class="card-btn h-32 rounded-2xl bg-carnaYellow border-3 border-slate-950 cursor-pointer flex items-center justify-center text-slate-950 font-pop text-3xl hover:scale-105 transition shadow-[0_6px_0px_#12144f] relative preserve-3d" id="card-1">
+                    <i class="fa-solid fa-crown text-slate-950/30 text-4xl"></i>
+                </div>
+                <div onclick="pickCard(2)" class="card-btn h-32 rounded-2xl bg-carnaYellow border-3 border-slate-950 cursor-pointer flex items-center justify-center text-slate-950 font-pop text-3xl hover:scale-105 transition shadow-[0_6px_0px_#12144f] relative preserve-3d" id="card-2">
+                    <i class="fa-solid fa-crown text-slate-950/30 text-4xl"></i>
+                </div>
+                <div onclick="pickCard(3)" class="card-btn h-32 rounded-2xl bg-carnaYellow border-3 border-slate-950 cursor-pointer flex items-center justify-center text-slate-950 font-pop text-3xl hover:scale-105 transition shadow-[0_6px_0px_#12144f] relative preserve-3d" id="card-3">
+                    <i class="fa-solid fa-crown text-slate-950/30 text-4xl"></i>
+                </div>
+            </div>
+
+            <div id="card-result-msg" class="text-xs font-pop text-carnaPurple min-h-[24px]"></div>
+            <button onclick="closeModal('modal-cartas')" class="mt-4 px-6 py-2.5 rounded-2xl bg-carnaBlue-900 text-white font-pop text-xs border-2 border-slate-950 shadow-[0_4px_0px_#12144f]">Voltar ao Jogo</button>
+        </div>
+    </div>
+
+    <!-- UNIVERSITÁRIOS MODAL -->
+    <div id="modal-uni" class="fixed inset-0 bg-carnaBlue-950/85 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-carnaPastelPink border-4 border-slate-950 p-6 rounded-3xl max-w-lg w-full text-center shadow-pop-dark">
+            <div class="bg-carnaYellow border-3 border-slate-950 text-slate-950 font-pop text-xl py-2 px-4 rounded-2xl mb-2 inline-block shadow-[0_4px_0px_#12144f]">
+                UNIVERSITÁRIOS DA FOLIA 🎓
+            </div>
+            <p class="text-xs font-bold text-slate-800 mb-6">Três estudantes convidados dão os palpites deles:</p>
+            
+            <div class="space-y-3 text-left mb-6" id="uni-opinions-container">
+                <!-- Populated via JS -->
+            </div>
+
+            <button onclick="closeModal('modal-uni')" class="px-6 py-2.5 rounded-2xl bg-carnaRed text-white font-pop text-xs border-2 border-slate-950 shadow-[0_4px_0px_#12144f]">Entendi, Voltar!</button>
+        </div>
+    </div>
+
+    <!-- PLACAS MODAL -->
+    <div id="modal-placas" class="fixed inset-0 bg-carnaBlue-950/85 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-carnaPastelPink border-4 border-slate-950 p-6 rounded-3xl max-w-md w-full text-center shadow-pop-dark">
+            <div class="bg-carnaCyan border-3 border-slate-950 text-slate-950 font-pop text-xl py-2 px-4 rounded-2xl mb-2 inline-block shadow-[0_4px_0px_#12144f]">
+                PLACAS DO AUDITÓRIO 📊
+            </div>
+            <p class="text-xs font-bold text-slate-800 mb-6">Resultado da contagem de votos da plateia:</p>
+            
+            <div class="space-y-3 mb-6 text-left" id="placas-bars-container">
+                <!-- Populated via JS -->
+            </div>
+
+            <button onclick="closeModal('modal-placas')" class="px-6 py-2.5 rounded-2xl bg-carnaYellow text-slate-950 font-pop text-xs border-2 border-slate-950 shadow-[0_4px_0px_#12144f]">Continuar</button>
+        </div>
+    </div>
+
+    <!-- GAME OVER / RESULT MODAL -->
+    <div id="modal-result" class="fixed inset-0 bg-carnaBlue-950/90 backdrop-blur-lg z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-carnaPastelPink border-4 border-slate-950 p-8 rounded-3xl max-w-lg w-full text-center shadow-pop-dark relative overflow-hidden">
+            <div id="result-badge" class="w-24 h-24 mx-auto rounded-3xl bg-carnaYellow border-3 border-slate-950 text-slate-950 flex items-center justify-center text-5xl mb-4 shadow-pop-yellow transform -rotate-3">
+                <i class="fa-solid fa-trophy text-carnaRed"></i>
+            </div>
+            
+            <h2 id="result-title" class="text-3xl font-pop text-carnaRed uppercase mb-1">FIM DE JOGO!</h2>
+            <p id="result-subtitle" class="text-xs font-bold text-slate-800 mb-5">Você parou na hora certa e garantiu seu prêmio!</p>
+
+            <div class="bg-carnaBlue-950 border-4 border-carnaYellow rounded-2xl p-5 mb-6 shadow-pop-dark">
+                <div class="text-xs uppercase text-carnaYellow font-pop tracking-widest mb-1">Prêmio Final Conquistado</div>
+                <div id="result-prize" class="text-4xl md:text-5xl font-pop text-white">R$ 50.000</div>
+            </div>
+
+            <button onclick="restartGame()" class="w-full py-4 rounded-2xl bg-carnaYellow hover:bg-yellow-400 border-3 border-slate-950 text-slate-950 font-pop text-lg tracking-wide shadow-pop-yellow flex items-center justify-center gap-2 active:translate-y-1">
+                <i class="fa-solid fa-rotate-right"></i>
+                JOGAR NOVAMENTE
+            </button>
+        </div>
+    </div>
+
+    <!-- AUDIO ENGINE & GAME SCRIPT -->
+    <script>
+        /* ==========================================================================
+           1. SYNTHESIZED SOUND ENGINE (Web Audio API)
+           ========================================================================== */
+        class SoundEngine {
+            constructor() {
+                this.ctx = null;
+                this.enabled = true;
+                this.narrationEnabled = true;
+            }
+
+            init() {
+                if (!this.ctx) {
+                    const AudioCtx = window.AudioContext || window.webkitAudioContext;
+                    this.ctx = new AudioCtx();
+                }
+            }
+
+            playBeep(freq = 440, type = 'sine', duration = 0.15, vol = 0.1) {
+                if (!this.enabled) return;
+                this.init();
+                try {
+                    const osc = this.ctx.createOscillator();
+                    const gain = this.ctx.createGain();
+                    osc.type = type;
+                    osc.frequency.setValueAtTime(freq, this.ctx.currentTime);
+                    gain.gain.setValueAtTime(vol, this.ctx.currentTime);
+                    gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + duration);
+                    osc.connect(gain);
+                    gain.connect(this.ctx.destination);
+                    osc.start();
+                    osc.stop(this.ctx.currentTime + duration);
+                } catch(e) {}
+            }
+
+            playSelect() {
+                this.playBeep(659.25, 'triangle', 0.12, 0.15); // E5
+            }
+
+            playTension() {
+                if (!this.enabled) return;
+                this.init();
+                try {
+                    const osc = this.ctx.createOscillator();
+                    const gain = this.ctx.createGain();
+                    osc.type = 'sawtooth';
+                    osc.frequency.setValueAtTime(140, this.ctx.currentTime);
+                    osc.frequency.exponentialRampToValueAtTime(70, this.ctx.currentTime + 0.6);
+                    gain.gain.setValueAtTime(0.15, this.ctx.currentTime);
+                    gain.gain.linearRampToValueAtTime(0.01, this.ctx.currentTime + 0.6);
+                    osc.connect(gain);
+                    gain.connect(this.ctx.destination);
+                    osc.start();
+                    osc.stop(this.ctx.currentTime + 0.6);
+                } catch(e){}
+            }
+
+            playCorrect() {
+                if (!this.enabled) return;
+                this.init();
+                [523.25, 659.25, 783.99, 1046.50, 1318.51].forEach((freq, idx) => {
+                    setTimeout(() => {
+                        this.playBeep(freq, 'sine', 0.25, 0.2);
+                    }, idx * 90);
+                });
+            }
+
+            playWrong() {
+                if (!this.enabled) return;
+                this.init();
+                try {
+                    const osc = this.ctx.createOscillator();
+                    const gain = this.ctx.createGain();
+                    osc.type = 'sawtooth';
+                    osc.frequency.setValueAtTime(200, this.ctx.currentTime);
+                    osc.frequency.linearRampToValueAtTime(80, this.ctx.currentTime + 0.5);
+                    gain.gain.setValueAtTime(0.25, this.ctx.currentTime);
+                    gain.gain.exponentialRampToValueAtTime(0.01, this.ctx.currentTime + 0.5);
+                    osc.connect(gain);
+                    gain.connect(this.ctx.destination);
+                    osc.start();
+                    osc.stop(this.ctx.currentTime + 0.5);
+                } catch(e) {}
+            }
+
+            speak(text) {
+                if (!this.narrationEnabled || !('speechSynthesis' in window)) return;
+                window.speechSynthesis.cancel();
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.lang = 'pt-BR';
+                utterance.rate = 1.05;
+                utterance.pitch = 1.0;
+                window.speechSynthesis.speak(utterance);
+            }
+        }
+
+        const sound = new SoundEngine();
+
+        function toggleSound() {
+            sound.enabled = !sound.enabled;
+            const btnText = document.getElementById('sound-text');
+            const btnIcon = document.getElementById('sound-icon');
+            if (sound.enabled) {
+                btnText.textContent = 'Som: LIGADO';
+                btnIcon.className = 'fa-solid fa-music text-carnaYellow';
+            } else {
+                btnText.textContent = 'Som: DESLIGADO';
+                btnIcon.className = 'fa-solid fa-volume-xmark text-slate-400';
+            }
+        }
+
+        function toggleNarration() {
+            sound.narrationEnabled = !sound.narrationEnabled;
+            const btnText = document.getElementById('narration-text');
+            const btnIcon = document.getElementById('narration-icon');
+            if (sound.narrationEnabled) {
+                btnText.textContent = 'Voz: LIGADA';
+                btnIcon.className = 'fa-solid fa-volume-high text-carnaYellow';
+            } else {
+                btnText.textContent = 'Voz: DESLIGADA';
+                btnIcon.className = 'fa-solid fa-volume-xmark text-slate-400';
+                window.speechSynthesis.cancel();
+            }
+        }
+
+        /* ==========================================================================
+           2. GAME DATA (PRIZE LADDER & INÉDITAS CARNAVAL/GENERAL KNOWLEDGE QUESTIONS)
+           ========================================================================== */
+        const PRIZES = [
+            1000, 2000, 3000, 4000, 5000,           // Tier 1
+            10000, 20000, 30000, 40000, 50000,       // Tier 2
+            100000, 200000, 300000, 400000, 500000,  // Tier 3
+            1000000                                  // Pergunta do Milhão
+        ];
+
+        const QUESTION_POOL = {
+            // Tier 1: Questions 1 to 5 (1k to 5k)
+            tier1: [
+                {
+                    q: "Qual ritmo musical brasileiro, nascido em Pernambuco, foi reconhecido como Patrimônio Imaterial da Humanidade pela UNESCO?",
+                    options: ["Frevo", "Sertanejo", "Rock", "Bossa Nova"],
+                    answer: 0,
+                    cat: "Cultura Brasileira"
+                },
+                {
+                    q: "Qual elemento químico tem o símbolo 'Au' e número atômico 79?",
+                    options: ["Prata", "Ouro", "Cobre", "Alumínio"],
+                    answer: 1,
+                    cat: "Química"
+                },
+                {
+                    q: "Qual é a capital oficial da Austrália?",
+                    options: ["Sydney", "Melbourne", "Canberra", "Brisbane"],
+                    answer: 2,
+                    cat: "Geografia"
+                },
+                {
+                    q: "Quantos lados possui um polígono denominado Heptágono?",
+                    options: ["6 lados", "7 lados", "8 lados", "9 lados"],
+                    answer: 1,
+                    cat: "Matemática"
+                },
+                {
+                    q: "Qual o maior e mais antigo bloco de Carnaval de rua do mundo, segundo o Guinness Book?",
+                    options: ["Galo da Madrugada", "Cordão da Bola Preta", "Monobloco", "Olodum"],
+                    answer: 0,
+                    cat: "Carnaval do Brasil"
+                }
+            ],
+
+            // Tier 2: Questions 6 to 10 (10k to 50k)
+            tier2: [
+                {
+                    q: "Qual destes mamíferos é o único capaz de realizar um voo verdadeiro e sustentado?",
+                    options: ["Esquilo-voador", "Lêmure-voador", "Morcego", "Galeopiteco"],
+                    answer: 2,
+                    cat: "Biologia"
+                },
+                {
+                    q: "Qual planeta do Sistema Solar possui o maior número de luas confirmadas pela astronomia moderna?",
+                    options: ["Júpiter", "Saturno", "Urano", "Netuno"],
+                    answer: 1,
+                    cat: "Astronomia"
+                },
+                {
+                    q: "Qual gás compõe aproximadamente 78% do volume da atmosfera terrestre seca?",
+                    options: ["Oxigênio", "Dióxido de Carbono", "Nitrogênio", "Argônio"],
+                    answer: 2,
+                    cat: "Ciências Naturais"
+                },
+                {
+                    q: "Em qual estado brasileiro é comemorada a famosa Festa do Boi Bumbá em Parintins?",
+                    options: ["Maranhão", "Pará", "Amazonas", "Bahia"],
+                    answer: 2,
+                    cat: "Folclore & Geografia"
+                },
+                {
+                    q: "Qual foi a primeira capital do Brasil antes de o governo ser transferido para o Rio de Janeiro?",
+                    options: ["Salvador", "Recife", "Olinda", "São Vicente"],
+                    answer: 0,
+                    cat: "História do Brasil"
+                }
+            ],
+
+            // Tier 3: Questions 11 to 15 (100k to 500k)
+            tier3: [
+                {
+                    q: "Qual genial escritor brasileiro criou a obra prima 'Dom Casmurro' em 1899?",
+                    options: ["Castro Alves", "Machado de Assis", "José de Alencar", "Lima Barreto"],
+                    answer: 1,
+                    cat: "Literatura Brasileira"
+                },
+                {
+                    q: "Quantos ossos compõem a estrutura típica de um esqueleto humano adulto?",
+                    options: ["186 ossos", "206 ossos", "216 ossos", "254 ossos"],
+                    answer: 1,
+                    cat: "Anatomia Humana"
+                },
+                {
+                    q: "Qual físico formulou o modelo atômico historicamente conhecido como 'Pudim de Passas'?",
+                    options: ["Ernest Rutherford", "J.J. Thomson", "Niels Bohr", "John Dalton"],
+                    answer: 1,
+                    cat: "Física Quântica"
+                },
+                {
+                    q: "Em que ano a missão espacial Apollo 11 levou os primeiros seres humanos ao solo lunar?",
+                    options: ["1965", "1969", "1971", "1973"],
+                    answer: 1,
+                    cat: "História Espacial"
+                },
+                {
+                    q: "Qual é o rio mais longo e volumoso em extensão territorial do planeta Terra?",
+                    options: ["Rio Nilo", "Rio Amazonas", "Rio Mississippi", "Rio Yangtzé"],
+                    answer: 1,
+                    cat: "Geografia Física"
+                }
+            ],
+
+            // Tier 4: Questions 16 (PERGUNTA DO MILHÃO)
+            tier4: [
+                {
+                    q: "Em que ano foi promulgada a Primeira Constituição do Brasil Independente (Outorgada por D. Pedro I)?",
+                    options: ["1822", "1824", "1889", "1891"],
+                    answer: 1,
+                    cat: "História Constitucional"
+                },
+                {
+                    q: "Qual elemento químico possui o maior número atômico entre todos os elementos de ocorrência natural?",
+                    options: ["Plutônio", "Urânio", "Ósmio", "Irídio"],
+                    answer: 1,
+                    cat: "Química Avançada"
+                }
+            ]
+        };
+
+        /* ==========================================================================
+           3. GAME STATE MANAGEMENT
+           ========================================================================== */
+        let state = {
+            currentIndex: 0,
+            selectedOption: null,
+            eliminatedOptions: [],
+            helps: {
+                uni: true,
+                cards: true,
+                audience: true,
+                skipsLeft: 3
+            },
+            currentQuestion: null,
+            questionPool: [],
+            isAnswerConfirmed: false
+        };
+
+        window.onload = function() {
+            initGame();
+        };
+
+        function initGame() {
+            state.currentIndex = 0;
+            state.selectedOption = null;
+            state.eliminatedOptions = [];
+            state.helps = {
+                uni: true,
+                cards: true,
+                audience: true,
+                skipsLeft: 3
+            };
+
+            // Build randomized question deck
+            state.questionPool = [
+                ...shuffleArray(QUESTION_POOL.tier1).slice(0, 5),
+                ...shuffleArray(QUESTION_POOL.tier2).slice(0, 5),
+                ...shuffleArray(QUESTION_POOL.tier3).slice(0, 5),
+                ...shuffleArray(QUESTION_POOL.tier4).slice(0, 1)
+            ];
+
+            updateHelpsUI();
+            renderPrizeLadder();
+            loadCurrentQuestion();
+            setPresenterMsg("Alô Folia! Selecione a alternativa e confirme se estiver seguro!");
+        }
+
+        function shuffleArray(arr) {
+            return [...arr].sort(() => Math.random() - 0.5);
+        }
+
+        function formatBRL(value) {
+            return new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL', maximumFractionDigits: 0 }).format(value);
+        }
+
+        /* ==========================================================================
+           4. UI RENDERING LOGIC (CarnaFolia & Story-Quiz Aesthetics)
+           ========================================================================== */
+        function loadCurrentQuestion() {
+            state.selectedOption = null;
+            state.eliminatedOptions = [];
+            state.isAnswerConfirmed = false;
+
+            const q = state.questionPool[state.currentIndex];
+            state.currentQuestion = q;
+
+            // DOM Elements update
+            document.getElementById('question-number').textContent = state.currentIndex + 1;
+            document.getElementById('question-category').textContent = `Categoria: ${q.cat}`;
+            document.getElementById('question-text').textContent = q.q;
+
+            // Render Option Pill Buttons (Matching image_6b28ac Instagram Story quiz pill style)
+            const container = document.getElementById('options-container');
+            container.innerHTML = '';
+
+            const letters = ['A', 'B', 'C', 'D'];
+            const badgeColors = ['bg-carnaYellow', 'bg-carnaPink text-white', 'bg-carnaCyan', 'bg-carnaPurple text-white'];
+
+            q.options.forEach((optText, idx) => {
+                const btn = document.createElement('button');
+                btn.id = `opt-btn-${idx}`;
+                btn.className = `option-btn w-full p-3.5 md:p-4 rounded-full bg-white border-3 border-slate-950 hover:bg-yellow-50 transition flex items-center text-left text-sm md:text-base font-bold shadow-[0_5px_0px_#12144f] active:translate-y-1 cursor-pointer group`;
+                btn.onclick = () => selectOption(idx);
+
+                btn.innerHTML = `
+                    <span class="w-8 h-8 rounded-full ${badgeColors[idx]} border-2 border-slate-950 font-pop font-black flex items-center justify-center mr-3 shrink-0 shadow-[0_2px_0px_#12144f]">
+                        ${letters[idx]}
+                    </span>
+                    <span class="flex-1 text-slate-900">${optText}</span>
+                `;
+                container.appendChild(btn);
+            });
+
+            updateConfirmButton();
+            calculateStakes();
+            renderPrizeLadder();
+
+            sound.speak(`Pergunta ${state.currentIndex + 1}. Valendo ${formatBRL(PRIZES[state.currentIndex])}. ${q.q}`);
+        }
+
+        function selectOption(index) {
+            if (state.eliminatedOptions.includes(index) || state.isAnswerConfirmed) return;
+
+            sound.playSelect();
+            state.selectedOption = index;
+
+            const letters = ['A', 'B', 'C', 'D'];
+            const badgeColors = ['bg-carnaYellow', 'bg-carnaPink text-white', 'bg-carnaCyan', 'bg-carnaPurple text-white'];
+
+            for (let i = 0; i < 4; i++) {
+                const btn = document.getElementById(`opt-btn-${i}`);
+                if (!btn) continue;
+
+                if (i === index) {
+                    btn.className = `option-btn w-full p-3.5 md:p-4 rounded-full bg-carnaYellow border-4 border-slate-950 text-slate-950 font-extrabold flex items-center text-left text-sm md:text-base shadow-[0_6px_0px_#12144f] scale-[1.02] transition`;
+                } else if (!state.eliminatedOptions.includes(i)) {
+                    btn.className = `option-btn w-full p-3.5 md:p-4 rounded-full bg-white border-3 border-slate-950 hover:bg-yellow-50 transition flex items-center text-left text-sm md:text-base font-bold shadow-[0_5px_0px_#12144f] cursor-pointer group`;
+                }
+            }
+
+            updateConfirmButton();
+            setPresenterMsg(`Você escolheu a alternativa ${letters[index]}. Posso perguntar se está certo disso?`);
+        }
+
+        function updateConfirmButton() {
+            const btn = document.getElementById('btn-confirm');
+            if (state.selectedOption !== null) {
+                btn.disabled = false;
+                btn.classList.remove('opacity-50', 'cursor-not-allowed');
+                btn.classList.add('animate-bounce');
+            } else {
+                btn.disabled = true;
+                btn.classList.add('opacity-50', 'cursor-not-allowed');
+                btn.classList.remove('animate-bounce');
+            }
+        }
+
+        function calculateStakes() {
+            const currentPrize = PRIZES[state.currentIndex];
+            let valParar = 0;
+            let valErrar = 0;
+
+            if (state.currentIndex === 0) {
+                valParar = 0;
+                valErrar = 0;
+            } else if (state.currentIndex === 15) {
+                valParar = 500000;
+                valErrar = 0;
+            } else {
+                valParar = PRIZES[state.currentIndex - 1];
+                valErrar = Math.floor(valParar / 2);
+            }
+
+            document.getElementById('val-acertar').textContent = formatBRL(currentPrize);
+            document.getElementById('val-parar').textContent = formatBRL(valParar);
+            document.getElementById('val-errar').textContent = formatBRL(valErrar);
+        }
+
+        function renderPrizeLadder() {
+            const container = document.getElementById('prize-ladder');
+            container.innerHTML = '';
+
+            for (let i = PRIZES.length - 1; i >= 0; i--) {
+                const isCurrent = i === state.currentIndex;
+                const isPassed = i < state.currentIndex;
+                const val = PRIZES[i];
+
+                const item = document.createElement('div');
+                item.className = `px-3 py-1.5 rounded-xl text-xs flex justify-between items-center transition font-bold border-2 ${
+                    isCurrent 
+                        ? 'bg-carnaYellow border-slate-950 text-slate-950 font-pop shadow-[0_3px_0px_#12144f] scale-105' 
+                        : isPassed 
+                        ? 'bg-carnaGreen/20 border-carnaGreen text-slate-800' 
+                        : 'bg-white/60 border-slate-300 text-slate-500'
+                }`;
+
+                item.innerHTML = `
+                    <span class="font-pop">${i + 1}ª</span>
+                    <span>${formatBRL(val)}</span>
+                `;
+                container.appendChild(item);
+            }
+        }
+
+        function setPresenterMsg(msg) {
+            document.getElementById('presenter-text').textContent = `"${msg}"`;
+        }
+
+        /* ==========================================================================
+           5. CONFIRMATION & ANSWER LOGIC
+           ========================================================================== */
+        function confirmAnswer() {
+            if (state.selectedOption === null || state.isAnswerConfirmed) return;
+
+            state.isAnswerConfirmed = true;
+            sound.playTension();
+
+            const letters = ['A', 'B', 'C', 'D'];
+            const chosen = state.selectedOption;
+            const correct = state.currentQuestion.answer;
+
+            setPresenterMsg(`Você disse alternativa ${letters[chosen]}. Vamos ver na tela se está certo!`);
+            document.getElementById('btn-confirm').disabled = true;
+
+            setTimeout(() => {
+                const chosenBtn = document.getElementById(`opt-btn-${chosen}`);
+                const correctBtn = document.getElementById(`opt-btn-${correct}`);
+
+                if (chosen === correct) {
+                    // CORRECT ANSWER
+                    sound.playCorrect();
+                    chosenBtn.className = `option-btn w-full p-3.5 md:p-4 rounded-full bg-carnaGreen border-4 border-slate-950 text-slate-950 font-black flex items-center text-left text-sm md:text-base shadow-[0_6px_0px_#12144f] animate-bounce`;
+                    
+                    setPresenterMsg(`Certa resposta! Você conquistou ${formatBRL(PRIZES[state.currentIndex])}!`);
+                    sound.speak("Certa resposta!");
+
+                    setTimeout(() => {
+                        if (state.currentIndex === 15) {
+                            showEndGameModal(true, PRIZES[15]);
+                        } else {
+                            state.currentIndex++;
+                            loadCurrentQuestion();
+                        }
+                    }, 2000);
+
+                } else {
+                    // WRONG ANSWER
+                    sound.playWrong();
+                    chosenBtn.className = `option-btn w-full p-3.5 md:p-4 rounded-full bg-carnaRed border-4 border-slate-950 text-white font-black flex items-center text-left text-sm md:text-base shadow-[0_6px_0px_#12144f]`;
+                    if (correctBtn) {
+                        correctBtn.className = `option-btn w-full p-3.5 md:p-4 rounded-full bg-carnaGreen border-4 border-slate-950 text-slate-950 font-black flex items-center text-left text-sm md:text-base shadow-[0_6px_0px_#12144f]`;
+                    }
+
+                    let errarVal = 0;
+                    if (state.currentIndex > 0 && state.currentIndex < 15) {
+                        errarVal = Math.floor(PRIZES[state.currentIndex - 1] / 2);
+                    }
+
+                    setPresenterMsg(`Que pena, você errou! A resposta certa era a alternativa ${letters[correct]}.`);
+                    sound.speak("Que pena, você errou!");
+
+                    setTimeout(() => {
+                        showEndGameModal(false, errarVal);
+                    }, 2500);
+                }
+            }, 1800);
+        }
+
+        function openStopModal() {
+            let stopVal = 0;
+            if (state.currentIndex > 0) {
+                stopVal = state.currentIndex === 15 ? 500000 : PRIZES[state.currentIndex - 1];
+            }
+
+            document.getElementById('stop-confirm-msg').textContent = 
+                `Você pode parar agora e levar ${formatBRL(stopVal)} para casa!`;
+            
+            document.getElementById('modal-confirm-stop').classList.remove('hidden');
+        }
+
+        function executeStop() {
+            let stopVal = 0;
+            if (state.currentIndex > 0) {
+                stopVal = state.currentIndex === 15 ? 500000 : PRIZES[state.currentIndex - 1];
+            }
+            closeModal('modal-confirm-stop');
+            showEndGameModal(false, stopVal, true);
+        }
+
+        /* ==========================================================================
+           6. HELPS LOGIC (CARTAS, UNIVERSITÁRIOS, PLACAS, PULAR)
+           ========================================================================== */
+        function updateHelpsUI() {
+            document.getElementById('help-uni').disabled = !state.helps.uni;
+            document.getElementById('help-cards').disabled = !state.helps.cards;
+            document.getElementById('help-audience').disabled = !state.helps.audience;
+            
+            const skipBtn = document.getElementById('help-skip');
+            document.getElementById('skip-count').textContent = state.helps.skipsLeft;
+            skipBtn.disabled = state.helps.skipsLeft <= 0;
+        }
+
+        // --- CARTAS ---
+        function openCardsModal() {
+            if (!state.helps.cards) return;
+            sound.playSelect();
+            
+            for (let i = 0; i < 4; i++) {
+                const c = document.getElementById(`card-${i}`);
+                c.className = "card-btn h-32 rounded-2xl bg-carnaYellow border-3 border-slate-950 cursor-pointer flex items-center justify-center text-slate-950 font-pop text-3xl hover:scale-105 transition shadow-[0_6px_0px_#12144f] relative preserve-3d";
+                c.innerHTML = `<i class="fa-solid fa-crown text-slate-950/30 text-4xl"></i>`;
+                c.onclick = () => pickCard(i);
+            }
+            document.getElementById('card-result-msg').textContent = "";
+            document.getElementById('modal-cartas').classList.remove('hidden');
+        }
+
+        function pickCard(cardIdx) {
+            sound.playTension();
+            
+            const possibleEliminations = [0, 1, 1, 2, 2, 3];
+            const eliminateCount = possibleEliminations[Math.floor(Math.random() * possibleEliminations.length)];
+
+            const correctOpt = state.currentQuestion.answer;
+            const wrongOpts = [0, 1, 2, 3].filter(idx => idx !== correctOpt);
+            const toEliminate = shuffleArray(wrongOpts).slice(0, eliminateCount);
+
+            for (let i = 0; i < 4; i++) {
+                const c = document.getElementById(`card-${i}`);
+                c.onclick = null;
+                if (i === cardIdx) {
+                    c.classList.add('bg-carnaPink', 'text-white');
+                    c.innerHTML = `<span class="text-4xl font-pop">${eliminateCount}</span>`;
+                } else {
+                    c.classList.add('opacity-40');
+                }
+            }
+
+            toEliminate.forEach(idx => {
+                state.eliminatedOptions.push(idx);
+                const optBtn = document.getElementById(`opt-btn-${idx}`);
+                if (optBtn) {
+                    optBtn.disabled = true;
+                    optBtn.className = "option-btn w-full p-3.5 md:p-4 rounded-full bg-slate-200 border-3 border-slate-400 text-slate-400 opacity-40 cursor-not-allowed flex items-center text-left text-sm md:text-base font-bold";
+                }
+            });
+
+            state.helps.cards = false;
+            updateHelpsUI();
+
+            const msg = eliminateCount === 0 
+                ? "Rei das Cartas! Nenhuma alternativa foi eliminada." 
+                : `Show! ${eliminateCount} alternativa(s) incorreta(s) eliminada(s)!`;
+            
+            document.getElementById('card-result-msg').textContent = msg;
+            setPresenterMsg(msg);
+        }
+
+        // --- UNIVERSITÁRIOS ---
+        function useUniversitarios() {
+            if (!state.helps.uni) return;
+            sound.playSelect();
+
+            const correctOpt = state.currentQuestion.answer;
+            const letters = ['A', 'B', 'C', 'D'];
+            const students = [
+                { name: "Mariana (Medicina)", avatar: "fa-user-graduate" },
+                { name: "Lucas (Engenharia)", avatar: "fa-user-astronaut" },
+                { name: "Beatriz (Direito)", avatar: "fa-user-ninja" }
+            ];
+
+            const container = document.getElementById('uni-opinions-container');
+            container.innerHTML = '';
+
+            students.forEach(st => {
+                const isAccurate = Math.random() < 0.75;
+                let suggested = correctOpt;
+                if (!isAccurate) {
+                    const wrongOpts = [0,1,2,3].filter(x => x !== correctOpt);
+                    suggested = wrongOpts[Math.floor(Math.random() * wrongOpts.length)];
+                }
+
+                const div = document.createElement('div');
+                div.className = "p-3 rounded-2xl bg-white border-3 border-slate-950 shadow-[0_4px_0px_#12144f] flex items-center gap-3";
+                div.innerHTML = `
+                    <div class="w-10 h-10 rounded-xl bg-carnaYellow border-2 border-slate-950 text-slate-950 flex items-center justify-center font-bold text-lg">
+                        <i class="fa-solid ${st.avatar}"></i>
+                    </div>
+                    <div>
+                        <div class="text-xs font-pop text-carnaRed">${st.name}</div>
+                        <div class="text-xs text-slate-900 font-bold">"Acho que a correta é a <strong>Alternativa ${letters[suggested]}</strong>."</div>
+                    </div>
+                `;
+                container.appendChild(div);
+            });
+
+            state.helps.uni = false;
+            updateHelpsUI();
+            document.getElementById('modal-uni').classList.remove('hidden');
+            setPresenterMsg("Os universitários já deram os palpites deles!");
+        }
+
+        // --- PLACAS ---
+        function usePlacas() {
+            if (!state.helps.audience) return;
+            sound.playSelect();
+
+            const correctOpt = state.currentQuestion.answer;
+            const letters = ['A', 'B', 'C', 'D'];
+            
+            let percentages = [0, 0, 0, 0];
+            let remaining = 100;
+
+            const correctPct = Math.floor(Math.random() * 30) + 50;
+            percentages[correctOpt] = correctPct;
+            remaining -= correctPct;
+
+            const wrongIndices = [0, 1, 2, 3].filter(i => i !== correctOpt);
+            wrongIndices.forEach((wIdx, i) => {
+                if (i === wrongIndices.length - 1) {
+                    percentages[wIdx] = remaining;
+                } else {
+                    const p = Math.floor(Math.random() * remaining);
+                    percentages[wIdx] = p;
+                    remaining -= p;
+                }
+            });
+
+            const container = document.getElementById('placas-bars-container');
+            container.innerHTML = '';
+
+            letters.forEach((letra, idx) => {
+                const pct = percentages[idx];
+                const row = document.createElement('div');
+                row.className = "space-y-1";
+                row.innerHTML = `
+                    <div class="flex justify-between text-xs font-pop text-slate-900">
+                        <span>Alternativa ${letra}</span>
+                        <span class="text-carnaRed">${pct}%</span>
+                    </div>
+                    <div class="w-full h-4 bg-white rounded-full border-2 border-slate-950 overflow-hidden shadow-inner">
+                        <div class="h-full bg-carnaYellow border-r-2 border-slate-950 rounded-full transition-all duration-1000" style="width: ${pct}%"></div>
+                    </div>
+                `;
+                container.appendChild(row);
+            });
+
+            state.helps.audience = false;
+            updateHelpsUI();
+            document.getElementById('modal-placas').classList.remove('hidden');
+            setPresenterMsg("O auditório levantou as placas com a votação!");
+        }
+
+        // --- PULAR ---
+        function usePular() {
+            if (state.helps.skipsLeft <= 0) return;
+            sound.playSelect();
+
+            state.helps.skipsLeft--;
+            updateHelpsUI();
+
+            setPresenterMsg("Você pulou essa pergunta! Vamos para a próxima!");
+            sound.speak("Pergunta pulada!");
+
+            let tierKey = 'tier1';
+            if (state.currentIndex >= 5 && state.currentIndex < 10) tierKey = 'tier2';
+            else if (state.currentIndex >= 10 && state.currentIndex < 15) tierKey = 'tier3';
+            else if (state.currentIndex === 15) tierKey = 'tier4';
+
+            const remainingInTier = QUESTION_POOL[tierKey].filter(q => q.q !== state.currentQuestion.q);
+            if (remainingInTier.length > 0) {
+                state.currentQuestion = remainingInTier[Math.floor(Math.random() * remainingInTier.length)];
+                state.questionPool[state.currentIndex] = state.currentQuestion;
+            }
+
+            loadCurrentQuestion();
+        }
+
+        function closeModal(modalId) {
+            sound.playSelect();
+            document.getElementById(modalId).classList.add('hidden');
+        }
+
+        /* ==========================================================================
+           7. GAME OVER & WINNER CELEBRATIONS
+           ========================================================================== */
+        function triggerConfetti() {
+            if (typeof confetti === 'function') {
+                confetti({
+                    particleCount: 120,
+                    spread: 80,
+                    origin: { y: 0.6 }
+                });
+            }
+        }
+
+        function showEndGameModal(isMillionWinner, prizeValue, isStop = false) {
+            const modal = document.getElementById('modal-result');
+            const badge = document.getElementById('result-badge');
+            const title = document.getElementById('result-title');
+            const subtitle = document.getElementById('result-subtitle');
+            const prizeDisplay = document.getElementById('result-prize');
+
+            prizeDisplay.textContent = formatBRL(prizeValue);
+
+            if (isMillionWinner) {
+                triggerConfetti();
+                badge.className = "w-24 h-24 mx-auto rounded-3xl bg-carnaYellow border-3 border-slate-950 text-slate-950 flex items-center justify-center text-5xl mb-4 shadow-pop-yellow transform -rotate-3 animate-bounce";
+                badge.innerHTML = `<i class="fa-solid fa-crown text-carnaRed"></i>`;
+                title.textContent = "VOCÊ É O MAIS NOVO MILIONÁRIO!";
+                subtitle.textContent = "Parabéns! Você respondeu todas as 16 perguntas e conquistou o prêmio de 1 MILHÃO DE REAIS!";
+                sound.speak("Parabéns! Você ganhou um milhão de reais!");
+            } else if (isStop) {
+                badge.className = "w-24 h-24 mx-auto rounded-3xl bg-carnaCyan border-3 border-slate-950 text-slate-950 flex items-center justify-center text-5xl mb-4 shadow-pop-dark transform rotate-3";
+                badge.innerHTML = `<i class="fa-solid fa-face-smile-wink text-carnaBlue-900"></i>`;
+                title.textContent = "PAROU NA HORA CERTA!";
+                subtitle.textContent = "Você decidiu não arriscar e garantiu um grande prêmio em dinheiro!";
+            } else {
+                badge.className = "w-24 h-24 mx-auto rounded-3xl bg-carnaRed border-3 border-slate-950 text-white flex items-center justify-center text-5xl mb-4 shadow-pop-red";
+                badge.innerHTML = `<i class="fa-solid fa-face-frown text-carnaYellow"></i>`;
+                title.textContent = "FIM DE JOGO!";
+                subtitle.textContent = "Infelizmente você errou a resposta. Mas valeu a festa!";
+            }
+
+            modal.classList.remove('hidden');
+        }
+
+        function restartGame() {
+            sound.playSelect();
+            document.getElementById('modal-result').classList.add('hidden');
+            initGame();
+        }
+    </script>
+</body>
+</html>
